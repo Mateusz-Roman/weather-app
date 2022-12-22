@@ -21,7 +21,7 @@ class _AirScreenState extends State<AirScreen> {
               gradient: LinearGradient(
                 begin: Alignment.centerRight,
                 end: Alignment.centerLeft,
-                colors: [new Color(0xff6671e5), new Color(0xff4852d9)],
+                colors: [new Color(0xff41C12D), new Color(0xff96EE88)],
               )),
         ),
         Align(
@@ -29,7 +29,8 @@ class _AirScreenState extends State<AirScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Image(image: AssetImage('icons/cloud-sun.png')),
+                Image(image: AssetImage('icons/cloud-sun.png'),
+                color: Colors.black),
                 Padding(padding: EdgeInsets.only(top: 15.0)),
                 Text(Strings.appTitle,
                     textAlign: TextAlign.center,
@@ -37,7 +38,7 @@ class _AirScreenState extends State<AirScreen> {
                         textStyle: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 42.0,
-                      color: Colors.white,
+                      color: Colors.black,
                     ))),
                 Padding(padding: EdgeInsets.only(top: 5.0)),
                 Text('Powietrze',
@@ -45,7 +46,7 @@ class _AirScreenState extends State<AirScreen> {
                     style: GoogleFonts.lato(
                         textStyle: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.white,
+                      color: Colors.black,
                     ))),
               ],
             )),
@@ -61,7 +62,7 @@ class _AirScreenState extends State<AirScreen> {
                       textStyle: TextStyle(
                     fontWeight: FontWeight.w300,
                     fontSize: 18.0,
-                    color: Colors.white,
+                    color: Colors.black,
                   ))),
             ))
       ]), // This trailing comma makes auto-formatting nicer for build methods.

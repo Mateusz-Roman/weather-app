@@ -12,11 +12,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-
       body: Center(
-
-        child: Column(),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        child: Text("Home"),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.masks_outlined), label: "Powietrze"),
+          BottomNavigationBarItem(icon: Icon(Icons.wb_cloudy_outlined), label: "Pogoda")
+        ],
+      ),
     );
   }
 }

@@ -7,6 +7,10 @@ void main() {
   runApp(MyApp());
 }
 
+class Strings {
+  static const String appTitle = 'Clean Air';
+}
+
 class MyApp extends StatelessWidget {
 
   @override
@@ -16,11 +20,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SplashScreen(),
+      home: MyHomePage(),
     );
   }
 }
 
-class Strings {
-  static const String appTitle = 'Clean Air';
-}

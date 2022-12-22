@@ -5,12 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'MyHomePage.dart';
 import 'main.dart';
 
-class WeatherScreen extends StatefulWidget {
+class AirScreen extends StatefulWidget {
   @override
-  State<WeatherScreen> createState() => _WeatherScreenState();
+  State<AirScreen> createState() => _AirScreenState();
 }
 
-class _WeatherScreenState extends State<WeatherScreen> {
+class _AirScreenState extends State<AirScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +40,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       color: Colors.white,
                     ))),
                 Padding(padding: EdgeInsets.only(top: 5.0)),
-                Text('Pogoda',
+                Text('Powietrze',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.lato(
                         textStyle: TextStyle(

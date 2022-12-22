@@ -21,7 +21,7 @@ class _AirScreenState extends State<AirScreen> {
               gradient: LinearGradient(
                 begin: Alignment.centerRight,
                 end: Alignment.centerLeft,
-                colors: [new Color(0xff41C12D), new Color(0xff96EE88)],
+                colors: [new Color(0xff25A312), new Color(0xffA3FA95)],
               )),
         ),
         Align(

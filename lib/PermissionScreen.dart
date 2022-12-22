@@ -1,3 +1,4 @@
+import 'package:clean_air/MyHomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -62,11 +63,16 @@ class _PermissionScreenState extends State<PermissionScreen> {
                             MaterialStateProperty.all<Color>(Colors.white),
                         padding: MaterialStateProperty.all(
                             EdgeInsets.only(top: 12.0, bottom: 12.0))),
-                    onPressed: () {  },
                     child: Text(
                       'Zgoda!',
                       style: TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MyHomePage()));
+                    },
                   )),
             ))
       ]), // This trailing comma makes auto-formatting nicer for build methods.

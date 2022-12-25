@@ -29,46 +29,49 @@ class _WeatherScreenState extends State<WeatherScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Image(image: AssetImage('icons/cloud-sun.png')),
-                Padding(padding: EdgeInsets.only(top: 15.0)),
-                Text(Strings.appTitle,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.lato(
-                        textStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 42.0,
-                      color: Colors.white,
-                    ))),
-                Padding(padding: EdgeInsets.only(top: 5.0)),
-                Text('Pogoda',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.lato(
-                        textStyle: TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.white,
-                    ))),
+                Padding(padding: EdgeInsets.only(top: 45.0)),
+                Image(image: AssetImage('icons/weather-sunny.png')),
+                Padding(padding: EdgeInsets.only(top: 41.0)),
+                Text("Niedziela 25.12.2022, 15:00 słonecznie"),
+                Padding(padding: EdgeInsets.only(top: 12.0)),
+                Text('15°C'),
+                Text('Odczuwalna 12°C'),
+                IntrinsicHeight(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                        width: 130,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text("Ciśnienie"),
+                            Padding(padding: EdgeInsets.only(top: 2.0)),
+                            Text("1200 hPa")
+                          ],
+                        )),
+                    VerticalDivider(
+                      width: 48,
+                      thickness: 1,
+                    ),
+                    Container(
+                        width: 130,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text("Wiatr"),
+                            Padding(padding: EdgeInsets.only(top: 2.0)),
+                            Text("16 km/h")
+                          ],
+                        )),
+                  ],
+                )),
+                Padding(padding: EdgeInsets.only(top: 24.0)),
+                Text("Opady: 0,1 mm/12h"),
+                Padding(padding: EdgeInsets.only(top: 24.0)),
               ],
             )),
-        Positioned(
-            bottom: 35,
-            left: 0,
-            right: 0,
-            child: Container(
-              alignment: Alignment.center,
-              child: Text("Przywiewam dane...",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.lato(
-                      textStyle: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 18.0,
-                    color: Colors.white,
-                  ))),
-            ))
       ]), // This trailing comma makes auto-formatting nicer for build methods.
     );
-  }
-
-  bool havePermission() {
-    return true;
   }
 }

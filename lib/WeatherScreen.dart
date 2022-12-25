@@ -19,9 +19,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
           decoration: BoxDecoration(
               color: new Color(0xffffffff),
               gradient: LinearGradient(
-                begin: Alignment.centerRight,
-                end: Alignment.centerLeft,
-                colors: [new Color(0xff6e6cd8), new Color(0xff77e1ee)],
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
+                colors: [
+                  new Color(0xff6E6CD8),
+                  new Color(0xff40A0EF),
+                  new Color(0xff77E1EE)
+                ],
               )),
         ),
         Align(
@@ -60,6 +64,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           color: Colors.white,
                           fontWeight: FontWeight.w700)),
                 ),
+                Padding(padding: EdgeInsets.only(top: 25.0)),
                 IntrinsicHeight(
                     child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

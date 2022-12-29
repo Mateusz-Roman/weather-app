@@ -1,11 +1,17 @@
 import 'package:clean_air/PermissionScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:weather/weather.dart';
 
 import 'MyHomePage.dart';
 import 'main.dart';
 
 class WeatherScreen extends StatefulWidget {
+  WeatherScreen({required this.weather});
+
+  final Weather weather;
+
   @override
   State<WeatherScreen> createState() => _WeatherScreenState();
 }
@@ -36,7 +42,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 Padding(padding: EdgeInsets.only(top: 45.0)),
                 Image(image: AssetImage('icons/weather-sunny.png')),
                 Padding(padding: EdgeInsets.only(top: 41.0)),
-                Text("Niedziela 25.12.2022, 15:00, Słonecznie",
+                Text("${DateFormat.MMMMEEEEd('pl').format(DateTime.now())}, ${widget.weather.weatherDescription}",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(
@@ -46,7 +52,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           fontWeight: FontWeight.w400)),
                 ),
                 Padding(padding: EdgeInsets.only(top: 12.0)),
-                Text('15°C',
+                Text('${widget.weather.temperature!.celsius!.floor().toString()}°C',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(
@@ -55,7 +61,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           color: Colors.white,
                           fontWeight: FontWeight.w700)),
                 ),
-                Text('Odczuwalna 12°C',
+                Text('Odczuwalna ${widget.weather.tempFeelsLike!.celsius!.floor().toString()}°C',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(
@@ -84,7 +90,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                       fontWeight: FontWeight.w300)),
                             ),
                             Padding(padding: EdgeInsets.only(top: 2.0)),
-                            Text("1200 hPa",
+                            Text("${widget.weather.pressure!.floor().toString()} hPa",
                               textAlign: TextAlign.center,
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
@@ -114,7 +120,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                       color: Colors.white,
                                       fontWeight: FontWeight.w300)),),
                             Padding(padding: EdgeInsets.only(top: 2.0)),
-                            Text("16 km/h",
+                            Text("${widget.weather.windSpeed} m/s",
                               textAlign: TextAlign.center,
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
@@ -128,7 +134,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   ],
                 )),
                 Padding(padding: EdgeInsets.only(top: 24.0)),
-                Text('Opady: 0,1 mm/12h',
+                if(widget.weather.rainLastHour != null)
+                Text('Opady: ${widget.weather.rainLastHour} mm/h',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(

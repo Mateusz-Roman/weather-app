@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({required this.weather});
 
+  MyHomePage({this.weather});
   final Weather weather;
 
   @override

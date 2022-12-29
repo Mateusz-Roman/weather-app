@@ -8,8 +8,8 @@ import 'MyHomePage.dart';
 import 'main.dart';
 
 class WeatherScreen extends StatefulWidget {
-  WeatherScreen({required this.weather});
 
+  WeatherScreen({this.weather});
   final Weather weather;
 
   @override
@@ -40,7 +40,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(padding: EdgeInsets.only(top: 45.0)),
-                Image(image: AssetImage('icons/weather-sunny.png')),
+                Image(image: AssetImage('icons/${getIconByMood(widget.weather)}.png')),
                 Padding(padding: EdgeInsets.only(top: 41.0)),
                 Text("${DateFormat.MMMMEEEEd('pl').format(DateTime.now())}, ${widget.weather.weatherDescription}",
                   textAlign: TextAlign.center,
@@ -52,7 +52,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           fontWeight: FontWeight.w400)),
                 ),
                 Padding(padding: EdgeInsets.only(top: 12.0)),
-                Text('${widget.weather.temperature!.celsius!.floor().toString()}°C',
+                Text('${widget.weather.temperature.celsius.floor().toString()}°C',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(
@@ -61,7 +61,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           color: Colors.white,
                           fontWeight: FontWeight.w700)),
                 ),
-                Text('Odczuwalna ${widget.weather.tempFeelsLike!.celsius!.floor().toString()}°C',
+                Text('Odczuwalna ${widget.weather.tempFeelsLike.celsius.floor().toString()}°C',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(
@@ -90,7 +90,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                       fontWeight: FontWeight.w300)),
                             ),
                             Padding(padding: EdgeInsets.only(top: 2.0)),
-                            Text("${widget.weather.pressure!.floor().toString()} hPa",
+                            Text("${widget.weather.pressure.floor().toString()} hPa",
                               textAlign: TextAlign.center,
                               style: GoogleFonts.lato(
                                   textStyle: TextStyle(
@@ -149,5 +149,22 @@ class _WeatherScreenState extends State<WeatherScreen> {
             )),
       ]), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  String getIconByMood(Weather weather) {
+    var main = weather.weatherMain;
+    if(main == 'Clouds' || main == 'Drizzle' || main == 'Snow') {
+      return 'weather-rain';
+    } else if (main == 'Thunderstorm') {
+      return 'weather-lightning';
+    } else if (isNight(weather)){
+      return 'weather-moonny';
+    }else{
+      return 'weather-sunny';
+    }
+  }
+
+  bool isNight(Weather weather) {
+    return DateTime.now().isAfter(weather.sunset) || DateTime.now().isBefore(weather.sunrise);
   }
 }

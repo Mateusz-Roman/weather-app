@@ -128,7 +128,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   ],
                 )),
                 Padding(padding: EdgeInsets.only(top: 24.0)),
-                Text("Opady: 0,1 mm/12h",
+                Text('Opady: 0,1 mm/12h',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/date_symbol_data_custom.dart';
-import 'package:intl/date_symbol_data_http_request.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:weather/weather.dart';
+
 
 class WeatherScreen extends StatefulWidget {
   WeatherScreen({this.weather});
@@ -204,6 +204,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   void initState() {
     super.initState();
-    initializeDateFormattingCustom();
+    initializeDateFormatting();
   }
 }

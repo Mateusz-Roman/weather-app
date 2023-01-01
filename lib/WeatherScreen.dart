@@ -82,7 +82,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                       fontSize: 14.0,
                                       height: 1.2,
                                       color: Colors.white,
-                                      fontWeight: FontWeight.w300)),
+                                      fontWeight: FontWeight.w500)),
                             ),
                             Padding(padding: EdgeInsets.only(top: 2.0)),
                             Text(
@@ -115,7 +115,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                       fontSize: 14.0,
                                       height: 1.2,
                                       color: Colors.white,
-                                      fontWeight: FontWeight.w300)),
+                                      fontWeight: FontWeight.w500)),
                             ),
                             Padding(padding: EdgeInsets.only(top: 2.0)),
                             Text(

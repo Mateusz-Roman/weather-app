@@ -215,8 +215,10 @@ class _AirScreenState extends State<AirScreen> {
                     child: Align(
                       alignment: Alignment.topLeft,
                       heightFactor: 1,
-                      child: Image.asset('icons/danger-value-negative.png',
-                          scale: 0.9),
+                      child: Image.asset(
+                        'icons/danger-value-negative.png',
+                        scale: 0.9,
+                      ),
                     ),
                   ),
                   ClipRect(

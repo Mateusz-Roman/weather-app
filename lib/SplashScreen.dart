@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:http/http.dart' as http;
 import 'package:clean_air/PermissionScreen.dart';
 import 'package:clean_air/WeatherScreen.dart';
 import 'package:flutter/material.dart';
@@ -95,6 +95,18 @@ class _SplashScreenState extends State<SplashScreen> {
         language: Language.POLISH);
     Weather w = await wf.currentWeatherByCityName("Berlin");
     log(w.toJson().toString());
+
+    var lat =  51.236686;
+    var lon = 22.544199;
+    var keyword = 'geo:$lat;$lon';
+    var key  = 'cb336f4111c40d9f89acd5ea3f7e1d9e50873226';
+    String _endpoint = 'https:/api.waqi.info/feed/';
+    String url = '$_endpoint/$keyword/?token=$key';
+
+    http.Response response = await http.get(Uri.parse(url));
+    log(response.body.toString());
+
+
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => MyHomePage(weather: w)));
   }

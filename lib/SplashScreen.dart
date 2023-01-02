@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:clean_air/PermissionScreen.dart';
-import 'package:clean_air/WeatherScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -137,9 +136,11 @@ class AirQuality {
     if (aqi <= 100) {
       quality = "Bardzo dobra";
       advice = "Skorzystaj z dobrego powietrza i wyjdź na spacer";
+      isGood = true;
     } else if (aqi < 150) {
       quality = "Nie za dobra";
       advice = "Jeśli tylko możesz zostań w domu, załatwiaj sprawy online";
+      isBad =true;
     } else {
       quality = "Bardzo zła";
       advice = "Zdecydowanie zostań w domu i załatwiaj sprawy online!";

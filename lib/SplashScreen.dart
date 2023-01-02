@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:clean_air/PermissionScreen.dart';
@@ -96,18 +97,52 @@ class _SplashScreenState extends State<SplashScreen> {
     Weather w = await wf.currentWeatherByCityName("Berlin");
     log(w.toJson().toString());
 
-    var lat =  51.236686;
+    var lat = 51.236686;
     var lon = 22.544199;
     var keyword = 'geo:$lat;$lon';
-    var key  = 'cb336f4111c40d9f89acd5ea3f7e1d9e50873226';
+    var key = 'cb336f4111c40d9f89acd5ea3f7e1d9e50873226';
     String _endpoint = 'https:/api.waqi.info/feed/';
     String url = '$_endpoint/$keyword/?token=$key';
 
     http.Response response = await http.get(Uri.parse(url));
     log(response.body.toString());
 
+    Map<String, dynamic> jsonBody = json.decode(response.body);
+    AirQuality aq = new AirQuality(jsonBody);
 
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => MyHomePage(weather: w)));
+  }
+}
+
+class AirQuality {
+  bool isGood = false;
+  bool isBad = false;
+  String quality = "";
+  String advice = "";
+  int aqi = 0;
+  int pm25 = 0;
+  int pm10 = 0;
+  String station = "";
+
+  AirQuality(Map<String, dynamic> jsonBody) {
+    aqi = int.tryParse(jsonBody['data']['aqi'].toString()) ?? -1;
+    pm25 = int.tryParse(jsonBody['data']['iaqi']['pm25']['v'].toString()) ?? -1;
+    pm10 = int.tryParse(jsonBody['data']['iaqi']['pm10']['v'].toString()) ?? -1;
+    station = jsonBody['data']['city']['name'].toString();
+    setupLevel(aqi);
+  }
+
+  void setupLevel(int aqi) {
+    if (aqi <= 100) {
+      quality = "Bardzo dobra";
+      advice = "Skorzystaj z dobrego powietrza i wyjdź na spacer";
+    } else if (aqi < 150) {
+      quality = "Nie za dobra";
+      advice = "Jeśli tylko możesz zostań w domu, załatwiaj sprawy online";
+    } else {
+      quality = "Bardzo zła";
+      advice = "Zdecydowanie zostań w domu i załatwiaj sprawy online!";
+    }
   }
 }

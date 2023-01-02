@@ -1,4 +1,5 @@
 import 'package:clean_air/PermissionScreen.dart';
+import 'package:clean_air/SplashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -6,6 +7,10 @@ import 'MyHomePage.dart';
 import 'main.dart';
 
 class AirScreen extends StatefulWidget {
+
+  AirScreen({this.air});
+  final AirQuality air;
+
   @override
   State<AirScreen> createState() => _AirScreenState();
 }
@@ -20,11 +25,8 @@ class _AirScreenState extends State<AirScreen> {
           Container(
             decoration: BoxDecoration(
                 color: new Color(0xffffffff),
-                gradient: LinearGradient(
-                  begin: Alignment.centerRight,
-                  end: Alignment.centerLeft,
-                  colors: [new Color(0xff25A312), new Color(0xffA3FA95)],
-                )),
+                gradient: getGradientByMood(widget.air),
+                ),
           ),
           Align(
             alignment: FractionalOffset.center,
@@ -38,7 +40,7 @@ class _AirScreenState extends State<AirScreen> {
                     textStyle: TextStyle(
                       fontSize: 14.0,
                       height: 1.2,
-                      color: Colors.black,
+                      color:  getBackgroudTextColor(widget.air),
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -51,7 +53,7 @@ class _AirScreenState extends State<AirScreen> {
                     textStyle: TextStyle(
                       fontSize: 22.0,
                       height: 1.2,
-                      color: Colors.black,
+                      color: getBackgroudTextColor(widget.air),
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -110,7 +112,7 @@ class _AirScreenState extends State<AirScreen> {
                                 textStyle: TextStyle(
                                   fontSize: 14.0,
                                   height: 1.2,
-                                  color: Colors.black,
+                                  color: getBackgroudTextColor(widget.air),
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -123,7 +125,7 @@ class _AirScreenState extends State<AirScreen> {
                                 textStyle: TextStyle(
                                   fontSize: 22.0,
                                   height: 1.2,
-                                  color: Colors.black,
+                                  color: getBackgroudTextColor(widget.air),
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
@@ -133,7 +135,7 @@ class _AirScreenState extends State<AirScreen> {
                       ),
                       VerticalDivider(
                         width: 24,
-                        color: Colors.black,
+                        color: getBackgroudTextColor(widget.air),
                         thickness: 1,
                       ),
                       Container(
@@ -148,7 +150,7 @@ class _AirScreenState extends State<AirScreen> {
                                 textStyle: TextStyle(
                                   fontSize: 14.0,
                                   height: 1.2,
-                                  color: Colors.black,
+                                  color: getBackgroudTextColor(widget.air),
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -161,7 +163,7 @@ class _AirScreenState extends State<AirScreen> {
                                 textStyle: TextStyle(
                                   fontSize: 22.0,
                                   height: 1.2,
-                                  color: Colors.black,
+                                  color: getBackgroudTextColor(widget.air),
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
@@ -254,7 +256,7 @@ class _AirScreenState extends State<AirScreen> {
                     ),
                     child: Divider(
                       height: 10,
-                      color: Colors.black,
+                      color: getBackgroudTextColor(widget.air),
                       thickness: 1,
                     ),
                   ),
@@ -308,5 +310,43 @@ class _AirScreenState extends State<AirScreen> {
 
   bool havePermission() {
     return true;
+  }
+
+ LinearGradient getGradientByMood(AirQuality air) {
+
+  if (air.isGood) {
+    return LinearGradient(
+        begin: Alignment.bottomLeft,
+        end: Alignment.topRight,
+        colors: [
+          new Color(0xff4acf0c),
+          new Color(0xff75eda6),
+        ]);
+  } else if (air.isBad) {
+    return LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          new Color(0xfffbda61),
+          new Color(0xfff76b1c),
+        ]);
+  } else {
+    return LinearGradient(
+        begin: Alignment.bottomLeft,
+        end: Alignment.topRight,
+        colors: [
+          new Color(0xfff4003a),
+          new Color(0xffff8888),
+        ]);
+  }
+
+  }
+
+  Color getBackgroudTextColor(AirQuality air) {
+    if(air.isGood || air.isBad) {
+      return Colors.black;
+    } else {
+      return Colors.white;
+    }
   }
 }

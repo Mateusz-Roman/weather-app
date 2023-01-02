@@ -111,7 +111,7 @@ class _SplashScreenState extends State<SplashScreen> {
     AirQuality aq = new AirQuality(jsonBody);
 
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => MyHomePage(weather: w)));
+        MaterialPageRoute(builder: (context) => MyHomePage(weather: w, air: aq)));
   }
 }
 

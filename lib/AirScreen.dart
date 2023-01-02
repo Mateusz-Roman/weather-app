@@ -18,6 +18,8 @@ class AirScreen extends StatefulWidget {
 }
 
 class _AirScreenState extends State<AirScreen> {
+  PanelController _pc = new PanelController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +86,10 @@ class _AirScreenState extends State<AirScreen> {
                         RichText(
                           text: TextSpan(
                             text: "CAQI Ⓘ",
-                            recognizer: TapGestureRecognizer()..onTap = () {},
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                _pc.open();
+                              },
                             style: GoogleFonts.lato(
                               textStyle: TextStyle(
                                 fontSize: 16.0,
@@ -302,7 +307,8 @@ class _AirScreenState extends State<AirScreen> {
           ),
           SlidingUpPanel(
             minHeight: 0,
-            maxHeight: 340,
+            maxHeight: 300,
+            controller: _pc,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(5), topRight: Radius.circular(5)),
             panel: Stack(
@@ -314,6 +320,7 @@ class _AirScreenState extends State<AirScreen> {
                     right: 10,
                   ),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(padding: EdgeInsets.only(top: 32.0)),
                       Text(
@@ -365,7 +372,27 @@ class _AirScreenState extends State<AirScreen> {
                       ),
                     ],
                   ),
-                )
+                ),
+                Positioned(
+                  top: 10,
+                  right: -10,
+                  child: Container(
+                    alignment: Alignment.topRight,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        textStyle: TextStyle(fontSize: 16),
+                      ),
+                      onPressed: () {
+                        _pc.close();
+                      },
+                      child: Icon(
+                        Icons.close,
+                        color: Colors.black,
+                        size: 30,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           )

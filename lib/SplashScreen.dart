@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather/weather.dart';
-
 import 'MyHomePage.dart';
 import 'main.dart';
 
@@ -93,15 +92,15 @@ class _SplashScreenState extends State<SplashScreen> {
   void executeOnceAfterBuild() async {
     WeatherFactory wf = new WeatherFactory("d83b165b4a525fda48775389c311a9cb",
         language: Language.POLISH);
-    Weather w = await wf.currentWeatherByCityName("Berlin");
+    Weather w = await wf.currentWeatherByCityName("Lublin");
     log(w.toJson().toString());
 
     var lat = 51.236686;
     var lon = 22.544199;
     var keyword = 'geo:$lat;$lon';
     var key = 'cb336f4111c40d9f89acd5ea3f7e1d9e50873226';
-    String _endpoint = 'https:/api.waqi.info/feed/';
-    String url = '$_endpoint/$keyword/?token=$key';
+    String _endpoint = 'https://api.waqi.info/feed/';
+    String url = '$_endpoint$keyword/?token=$key';
 
     http.Response response = await http.get(Uri.parse(url));
     log(response.body.toString());
@@ -125,9 +124,9 @@ class AirQuality {
   String station = "";
 
   AirQuality(Map<String, dynamic> jsonBody) {
-    aqi = int.tryParse(jsonBody['data']['aqi'].toString()) ?? -1;
-    pm25 = int.tryParse(jsonBody['data']['iaqi']['pm25']['v'].toString()) ?? -1;
-    pm10 = int.tryParse(jsonBody['data']['iaqi']['pm10']['v'].toString()) ?? -1;
+    aqi = int.tryParse(jsonBody['data']['aqi'].toString())?? -1;
+    pm25 = int.tryParse(jsonBody['data']['iaqi']['pm25']['v'].toString())?? -1;
+    pm10 = int.tryParse(jsonBody['data']['iaqi']['pm10']['v'].toString())?? -1;
     station = jsonBody['data']['city']['name'].toString();
     setupLevel(aqi);
   }

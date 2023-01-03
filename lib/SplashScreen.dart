@@ -102,19 +102,18 @@ class _SplashScreenState extends State<SplashScreen> {
               Geolocator.getLastKnownPosition(forceAndroidLocationManager: true)
                   .then((value) => {loadLocationData(value)})
             });
-
-
   }
 
   loadLocationData(Position value) async {
     var lat = value.latitude;
     var lon = value.longitude;
+    var apikey = 'd83b165b4a525fda48775389c311a9cb';
+    log(lat.toString() + "x" + lon.toString());
 
-    WeatherFactory wf = new WeatherFactory("d83b165b4a525fda48775389c311a9cb",
+    WeatherFactory wf = new WeatherFactory('$apikey',
         language: Language.POLISH);
-    Weather w = await wf.currentWeatherByCityName("Lublin");
+    Weather w = await wf.currentWeatherByLocation(lat, lon);
     log(w.toJson().toString());
-
 
     var keyword = 'geo:$lat;$lon';
     var key = 'cb336f4111c40d9f89acd5ea3f7e1d9e50873226';
